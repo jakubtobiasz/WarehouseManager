@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarehouseManager.UI.Views"
+        xmlns:viewModels="clr-namespace:WarehouseManager.UI.ViewModels"
         mc:Ignorable="d"
         Title="AppView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:SuppliersViewModel}">
+            <local:SuppliersView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:RecipientViewModel}">
+            <local:RecipientsView />
+        </DataTemplate>
+    </Window.Resources>
+ 
+    <DockPanel>
+        <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
+            <ItemsControl ItemsSource="{Binding PageViewModels}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}"
+                                Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding }"
+                                Margin="5,5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+        <TextBlock Text="{}"></TextBlock>
+        <ContentControl Content="{Binding CurrentPageViewModel}" />
+    </DockPanel>
 </Window>

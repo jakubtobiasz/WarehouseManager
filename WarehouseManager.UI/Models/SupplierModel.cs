@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
 {

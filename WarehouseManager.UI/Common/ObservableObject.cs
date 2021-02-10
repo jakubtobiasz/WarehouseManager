@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace WarehouseManager.UI.Models
+namespace WarehouseManager.UI.Common
 {
-    public abstract class ObservableObject
+    public abstract class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         
