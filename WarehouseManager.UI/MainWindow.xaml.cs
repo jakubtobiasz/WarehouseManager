@@ -8,7 +8,7 @@ namespace WarehouseManager.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(AppDbContext dbContext)
+        public MainWindow()
         {
             InitializeComponent();
         }
