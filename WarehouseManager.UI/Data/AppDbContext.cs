@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Data
 {
@@ -8,5 +9,7 @@ namespace WarehouseManager.UI.Data
         {
             Database.EnsureCreated();
         }
+
+        public DbSet<SupplierModel> Suppliers { get; set; }
     }
 }
