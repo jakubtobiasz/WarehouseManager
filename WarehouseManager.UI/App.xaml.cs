@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WarehouseManager.UI.Data;
+using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI
 {
@@ -27,12 +28,12 @@ namespace WarehouseManager.UI
                 options.UseSqlite("Data Source = warehouse_manager.db");
             });
 
-            services.AddSingleton<MainWindow>();
+            services.AddSingleton<AppView>();
         }
 
         protected void OnStartup(object sender, StartupEventArgs startupEventArgs)
         {
-            var mainWindow = _serviceProvider.GetService<MainWindow>();
+            var mainWindow = _serviceProvider.GetService<AppView>();
             mainWindow?.Show();
         }
     }
