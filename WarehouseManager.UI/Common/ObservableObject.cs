@@ -2,7 +2,7 @@
 
 namespace WarehouseManager.UI.Models
 {
-    public abstract class BaseModel
+    public abstract class ObservableObject
     {
         public event PropertyChangedEventHandler PropertyChanged;
         

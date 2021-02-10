@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WarehouseManager.UI.Models
 {
-    public class SupplierModel : BaseModel
+    public class SupplierModel : ObservableObject
     {
         private int _supplierId;
         private string _name;
