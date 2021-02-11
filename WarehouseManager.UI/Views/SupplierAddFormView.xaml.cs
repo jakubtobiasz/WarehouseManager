@@ -4,11 +4,11 @@ using WarehouseManager.UI.ViewModels;
 namespace WarehouseManager.UI.Views
 {
     /// <summary>
-    /// Interaction logic for AppView.xaml
+    /// Interaction logic for SupplierAddFormView.xaml
     /// </summary>
-    public partial class AppView : Window
+    public partial class SupplierAddFormView : Window
     {
-        public AppView(AppViewModel viewModel)
+        public SupplierAddFormView(SupplierAddFormViewModel viewModel)
         {
             DataContext = viewModel;
             InitializeComponent();

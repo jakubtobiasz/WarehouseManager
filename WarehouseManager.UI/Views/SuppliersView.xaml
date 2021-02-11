@@ -15,10 +15,22 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" FontSize="32">Dostawcy</TextBlock>
-        <Button Grid.Row="0" Grid.Column="1" Width="40px" Height="40px" FontSize="34" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="Arial">+</Button>
+        <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="40px"
+            Height="40px"
+            FontSize="34"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontFamily="Arial"
+            Command="{Binding AddNewSupplier}">
+            +
+        </Button>
         <DataGrid
             Grid.Row="1"
             Grid.ColumnSpan="2"
+            Grid.Column="0"
             ItemsSource="{Binding Suppliers}"
             AutoGenerateColumns="False"
             CanUserAddRows="False"

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WarehouseManager.UI.Views"
         xmlns:viewModels="clr-namespace:WarehouseManager.UI.ViewModels"
         mc:Ignorable="d"
-        Title="AppView" Height="450" Width="800">
+        Title="WarehouseManager - Zarządzanie dostawami" Height="450" Width="800">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:SuppliersViewModel}">
             <local:SuppliersView />
