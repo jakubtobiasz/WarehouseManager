@@ -10,6 +10,25 @@
             <RowDefinition Height="50px"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" FontSize="32">Dostawcy</TextBlock>
+        <Button Grid.Row="0" Grid.Column="1" Width="40px" Height="40px" FontSize="34" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="Arial">+</Button>
+        <DataGrid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Suppliers}"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserReorderColumns="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding SupplierId}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

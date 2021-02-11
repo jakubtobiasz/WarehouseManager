@@ -29,6 +29,8 @@ namespace WarehouseManager.UI
                 options.UseSqlite("Data Source = warehouse_manager.db");
             });
 
+            services.AddTransient<SuppliersViewModel>();
+            services.AddTransient<RecipientViewModel>();
             services.AddTransient<AppViewModel>();
             services.AddSingleton<AppView>();
         }

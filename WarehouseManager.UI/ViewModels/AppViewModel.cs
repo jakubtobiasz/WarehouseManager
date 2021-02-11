@@ -17,10 +17,10 @@ namespace WarehouseManager.UI.ViewModels
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
 
-        public AppViewModel()
+        public AppViewModel(SuppliersViewModel suppliersViewModel, RecipientViewModel recipientViewModel)
         {
-            PageViewModels.Add(new SuppliersViewModel());
-            PageViewModels.Add(new RecipientViewModel());
+            PageViewModels.Add(suppliersViewModel);
+            PageViewModels.Add(recipientViewModel);
 
             CurrentPageViewModel = PageViewModels[0];
         }
