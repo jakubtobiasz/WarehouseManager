@@ -4,6 +4,6 @@ namespace WarehouseManager.UI.ViewModels
 {
     class SuppliersViewModel : IPageViewModel
     {
-        public string Name => "Suppliers";
+        public string Name => "Dostawcy";
     }
 }

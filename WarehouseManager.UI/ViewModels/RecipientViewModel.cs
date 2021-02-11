@@ -4,6 +4,6 @@ namespace WarehouseManager.UI.ViewModels
 {
     class RecipientViewModel : IPageViewModel
     {
-        public string Name => "Recipients";
+        public string Name => "Odbiorcy";
     }
 }
