@@ -8,6 +8,8 @@ namespace WarehouseManager.UI.Models
     {
         private int _supplierId;
         private string _name;
+        private string _nip;
+        private string _accountNumber;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -32,6 +34,34 @@ namespace WarehouseManager.UI.Models
 
                 _name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        [MinLength(10)]
+        [MaxLength(10)]
+        public string NIP
+        {
+            get => _nip;
+            set
+            {
+                if (value == _nip) return;
+
+                _nip = value;
+                OnPropertyChanged(nameof(NIP));
+            }
+        }
+
+        [MinLength(26)]
+        [MaxLength(26)]
+        public string AccountNumber
+        {
+            get => _accountNumber;
+            set
+            {
+                if (value == _accountNumber) return;
+
+                _accountNumber = value;
+                OnPropertyChanged(nameof(AccountNumber));
             }
         }
     }

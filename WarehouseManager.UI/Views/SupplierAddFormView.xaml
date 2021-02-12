@@ -14,13 +14,31 @@
         <TextBlock FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Dodawanie nowego dostawcy</TextBlock>
         <StackPanel Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <Label>Nazwa</Label>
+                <Label Width="200px">Nazwa</Label>
                 <TextBox
                     Width="200px"
                     Margin="10 0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     Text="{Binding Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="200px">NIP</Label>
+                <TextBox
+                    Width="200px"
+                    Margin="10 0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Text="{Binding Model.NIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="200px">Numer rachunku</Label>
+                <TextBox
+                    Width="200px"
+                    Margin="10 0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Text="{Binding Model.AccountNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <Button
                 Margin="0,15,0,0"

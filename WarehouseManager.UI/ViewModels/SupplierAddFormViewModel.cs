@@ -29,7 +29,7 @@ namespace WarehouseManager.UI.ViewModels
                 {
                     _save = new RelayCommand(
                         _ => SaveChanges(),
-                        _ => !string.IsNullOrEmpty(Model.Name)
+                        _ => !string.IsNullOrEmpty(Model.Name) && !string.IsNullOrEmpty(Model.NIP) && !string.IsNullOrEmpty(Model.AccountNumber)
                     );
                 }
 

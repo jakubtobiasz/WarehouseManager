@@ -40,6 +40,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding SupplierId}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="NIP" Binding="{Binding NIP}" />
+                <DataGridTextColumn Header="AccountNumber" Binding="{Binding AccountNumber}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
