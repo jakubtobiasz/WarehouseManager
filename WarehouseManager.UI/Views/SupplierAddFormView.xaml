@@ -5,6 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Dodawanie nowego dostawcy" Height="650" Width="450">
+
+    <Window.Resources>
+        <Style x:Key="textBoxInError" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="5,5,5,5">
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"></RowDefinition>
@@ -16,29 +29,34 @@
             <StackPanel Orientation="Horizontal">
                 <Label Width="200px">Nazwa</Label>
                 <TextBox
+                    Style="{StaticResource textBoxInError}"
                     Width="200px"
                     Margin="10 0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    Text="{Binding Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding Model.Name, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Width="200px">NIP</Label>
                 <TextBox
+                    Style="{StaticResource textBoxInError}"
+                    MaxLength="10"
                     Width="200px"
                     Margin="10 0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    Text="{Binding Model.NIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding Model.NIP, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Width="200px">Numer rachunku</Label>
                 <TextBox
+                    Style="{StaticResource textBoxInError}"
+                    MaxLength="26"
                     Width="200px"
                     Margin="10 0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    Text="{Binding Model.AccountNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding Model.AccountNumber, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <Button
                 Margin="0,15,0,0"
