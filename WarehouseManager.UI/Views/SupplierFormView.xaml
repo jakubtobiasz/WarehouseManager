@@ -61,7 +61,7 @@
             <Button
                 Margin="0,15,0,0"
                 Command="{Binding Save}">
-                Dodaj
+                Zapisz
             </Button>
         </StackPanel>
     </Grid>

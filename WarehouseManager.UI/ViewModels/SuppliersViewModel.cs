@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
@@ -18,6 +21,7 @@ namespace WarehouseManager.UI.ViewModels
         private Window _supplierFormView = null;
         private ICommand _addNewSupplierCommand;
         private ICommand _removeSupplierCommand;
+        private ICommand _editSupplierCommand;
 
         public SuppliersViewModel(AppDbContext dbContext)
         {
@@ -37,7 +41,7 @@ namespace WarehouseManager.UI.ViewModels
             }
         }
 
-        public Window SupplierCreatorView
+        public Window SuppliersFormView
         {
             get => _supplierFormView;
             set
@@ -45,7 +49,7 @@ namespace WarehouseManager.UI.ViewModels
                 if (_supplierFormView == value) return;
 
                 _supplierFormView = value;
-                OnPropertyChanged(nameof(SupplierCreatorView));
+                OnPropertyChanged(nameof(SuppliersFormView));
             }
         }
 
@@ -57,11 +61,27 @@ namespace WarehouseManager.UI.ViewModels
                 {
                     _addNewSupplierCommand = new RelayCommand(
                         _ => AddSupplier(),
-                        _ => SupplierCreatorView is null
+                        _ => SuppliersFormView is null
                     );
                 }
 
                 return _addNewSupplierCommand;
+            }
+        }
+
+        public ICommand EditSupplierCommand
+        {
+            get
+            {
+                if (_editSupplierCommand is null)
+                {
+                    _editSupplierCommand = new RelayCommand(
+                        s => EditSupplier(s as SupplierModel),
+                        _ => SuppliersFormView is null
+                    );
+                }
+
+                return _editSupplierCommand;
             }
         }
 
@@ -82,21 +102,23 @@ namespace WarehouseManager.UI.ViewModels
 
         public string Name => "Dostawcy";
 
-        public void FillData()
-        {
-            Suppliers = new ObservableCollection<SupplierModel>(_dbContext.Suppliers);
-        }
-
         public void AddSupplier()
         {
-            SupplierCreatorView = new SupplierFormView(new SupplierFormViewModel(_dbContext));
-            SupplierCreatorView.Show();
-            SupplierCreatorView.Closed += OnAddSupplierClosed;
+            SuppliersFormView = new SupplierFormView(new SupplierFormViewModel(_dbContext));
+            SuppliersFormView.Show();
+            SuppliersFormView.Closed += OnSuppliersFormClosed;
         }
 
-        public void OnAddSupplierClosed(object sender, EventArgs eventArgs)
+        public void EditSupplier(SupplierModel supplier)
         {
-            SupplierCreatorView = null;
+            SuppliersFormView = new SupplierFormView(new SupplierFormViewModel(_dbContext, supplier));
+            SuppliersFormView.Show();
+            SuppliersFormView.Closed += OnSuppliersFormClosed;
+        }
+
+        private void OnSuppliersFormClosed(object sender, EventArgs eventArgs)
+        {
+            SuppliersFormView = null;
             Suppliers = null;
             FillData();
         }
@@ -111,6 +133,11 @@ namespace WarehouseManager.UI.ViewModels
             _dbContext.Suppliers.Remove(supplier);
             _dbContext.SaveChanges();
             FillData();
+        }
+
+        private void FillData()
+        {
+            Suppliers = new ObservableCollection<SupplierModel>(_dbContext.Suppliers);
         }
     }
 }

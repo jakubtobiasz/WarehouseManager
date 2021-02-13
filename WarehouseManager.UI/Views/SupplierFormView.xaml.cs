@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using WarehouseManager.UI.ViewModels;
 
 namespace WarehouseManager.UI.Views
@@ -13,6 +14,13 @@ namespace WarehouseManager.UI.Views
             DataContext = viewModel;
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Closed += OnWindowClosed;
+        }
+
+        public void OnWindowClosed(object sender, EventArgs args)
+        {
+            (DataContext as SupplierFormViewModel)?.ReloadModel();
+            Closed -= OnWindowClosed;
         }
     }
 }
