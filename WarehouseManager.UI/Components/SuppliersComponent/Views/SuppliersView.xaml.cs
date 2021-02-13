@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace WarehouseManager.UI.Views
+namespace WarehouseManager.UI.Components.SuppliersComponent.Views
 {
     /// <summary>
     /// Interaction logic for SuppliersView.xaml

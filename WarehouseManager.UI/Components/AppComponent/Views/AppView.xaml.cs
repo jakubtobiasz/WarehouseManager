@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using WarehouseManager.UI.ViewModels;
+using WarehouseManager.UI.Components.AppComponent.ViewModels;
 
-namespace WarehouseManager.UI.Views
+namespace WarehouseManager.UI.Components.AppComponent.Views
 {
     /// <summary>
     /// Interaction logic for AppView.xaml

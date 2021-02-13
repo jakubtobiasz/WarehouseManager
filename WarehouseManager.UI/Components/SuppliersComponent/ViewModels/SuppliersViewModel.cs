@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
+using WarehouseManager.UI.Components.SuppliersComponent.Views;
 using WarehouseManager.UI.Data;
 using WarehouseManager.UI.Models;
 using WarehouseManager.UI.Views;
 
-namespace WarehouseManager.UI.ViewModels
+namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
 {
     public class SuppliersViewModel : ObservableObject, IPageViewModel
     {

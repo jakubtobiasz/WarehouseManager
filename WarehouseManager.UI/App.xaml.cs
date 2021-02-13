@@ -2,8 +2,12 @@
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using WarehouseManager.UI.Components.AppComponent.ViewModels;
+using WarehouseManager.UI.Components.AppComponent.Views;
+using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
+using WarehouseManager.UI.Components.SuppliersComponent.Views;
+using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
 using WarehouseManager.UI.Data;
-using WarehouseManager.UI.ViewModels;
 using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI
@@ -32,7 +36,7 @@ namespace WarehouseManager.UI
             services.AddTransient<SupplierFormViewModel>();
             services.AddTransient<SupplierFormView>();
             services.AddTransient<SuppliersViewModel>();
-            services.AddTransient<RecipientViewModel>();
+            services.AddTransient<WarehousesViewModel>();
             services.AddTransient<AppViewModel>();
             services.AddSingleton<AppView>();
         }

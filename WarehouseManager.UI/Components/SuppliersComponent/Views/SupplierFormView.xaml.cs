@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using WarehouseManager.UI.ViewModels;
+using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
 
-namespace WarehouseManager.UI.Views
+namespace WarehouseManager.UI.Components.SuppliersComponent.Views
 {
     /// <summary>
     /// Interaction logic for SupplierAddFormView.xaml

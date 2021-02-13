@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
-using WarehouseManager.UI.Models;
+using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
+using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
 using WarehouseManager.UI.Views;
 
-namespace WarehouseManager.UI.ViewModels
+namespace WarehouseManager.UI.Components.AppComponent.ViewModels
 {
     public class AppViewModel : ObservableObject
     {
@@ -17,7 +16,7 @@ namespace WarehouseManager.UI.ViewModels
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
 
-        public AppViewModel(SuppliersViewModel suppliersViewModel, RecipientViewModel recipientViewModel)
+        public AppViewModel(SuppliersViewModel suppliersViewModel, WarehousesViewModel recipientViewModel)
         {
             PageViewModels.Add(suppliersViewModel);
             PageViewModels.Add(recipientViewModel);
