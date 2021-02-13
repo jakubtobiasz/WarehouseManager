@@ -66,8 +66,7 @@
                     ItemsSource="{Binding Employees}"
                     DisplayMemberPath="FullName"
                     SelectedValuePath="EmployeeId"
-                    SelectedValue="{Binding Model.ManagerId}"
-                    SelectedItem="{Binding Model.ManagerId, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}">
+                    SelectedValue="{Binding Model.ManagerId, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}">
 
                 </ComboBox>
             </StackPanel>

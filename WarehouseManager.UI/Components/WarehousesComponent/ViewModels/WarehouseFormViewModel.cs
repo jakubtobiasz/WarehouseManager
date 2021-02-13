@@ -26,7 +26,6 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
         #region Properties
 
         public WarehouseModel Model { get; set; }
-        public int SelectedVal { get; set; }
         public ICollection<EmployeeModel> Employees { get; set; }
 
         #endregion
@@ -58,7 +57,6 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             if (Model.WarehouseId == default)
             {
                 _dbContext.Warehouses.Add(Model);
-                var ss = SelectedVal;
             }
             else
             {
