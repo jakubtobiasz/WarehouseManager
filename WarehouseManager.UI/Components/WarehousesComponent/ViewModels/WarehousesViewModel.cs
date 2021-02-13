@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
 using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.WarehousesComponent.Views;
@@ -145,7 +146,7 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
 
         private void FillData()
         {
-            Warehouses = new ObservableCollection<WarehouseModel>(_dbContext.Warehouses);
+            Warehouses = new ObservableCollection<WarehouseModel>(_dbContext.Warehouses.Include(w => w.Manager));
         }
 
         #endregion

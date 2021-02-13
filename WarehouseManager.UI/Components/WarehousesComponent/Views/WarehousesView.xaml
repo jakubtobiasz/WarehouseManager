@@ -41,6 +41,7 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding WarehouseId}" />
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Miasto" Binding="{Binding CityName}" />
+                <DataGridTextColumn Header="Kierownik" Binding="{Binding Manager.FullName}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

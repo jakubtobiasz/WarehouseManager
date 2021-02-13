@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -81,6 +82,10 @@ namespace WarehouseManager.UI.Models
                 OnPropertyChanged(nameof(AccountNumber));
             }
         }
+
+        public ICollection<WarehouseModel> ManagedWarehouses { get; set; }
+
+        [NotMapped] public string FullName => $"{FirstName} {LastName}";
 
         [NotMapped]
         public bool CanSave => this[nameof(HireDate)] is null && this[nameof(FirstName)] is null && this[nameof(LastName)] is null && this[nameof(AccountNumber)] is null;

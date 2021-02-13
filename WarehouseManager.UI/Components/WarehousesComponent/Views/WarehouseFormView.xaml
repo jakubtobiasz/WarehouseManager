@@ -6,6 +6,15 @@
         mc:Ignorable="d"
         Title="Dodawanie nowego magazynu" Height="650" Width="450">
     <Window.Resources>
+        <Style x:Key="comboBoxInError" TargetType="ComboBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="textBoxInError" TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
@@ -45,6 +54,22 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     Text="{Binding Model.CityName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="200px">Kierownik</Label>
+                <ComboBox
+                    Style="{StaticResource comboBoxInError}"
+                    Width="200px"
+                    Margin="10 0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    ItemsSource="{Binding Employees}"
+                    DisplayMemberPath="FullName"
+                    SelectedValuePath="EmployeeId"
+                    SelectedValue="{Binding Model.ManagerId}"
+                    SelectedItem="{Binding Model.ManagerId, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}">
+
+                </ComboBox>
             </StackPanel>
             <Button
                 Margin="0,15,0,0"

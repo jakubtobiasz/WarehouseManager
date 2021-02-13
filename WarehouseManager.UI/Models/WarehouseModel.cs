@@ -10,6 +10,7 @@ namespace WarehouseManager.UI.Models
         private int _warehouseId;
         private string _name;
         private string _cityName;
+        private int _managerId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -51,8 +52,22 @@ namespace WarehouseManager.UI.Models
             }
         }
 
+        [ForeignKey(nameof(Manager))]
+        public int ManagerId
+        {
+            get => _managerId;
+            set
+            {
+                if (value == _managerId) return;
+
+                _managerId = value;
+                OnPropertyChanged(nameof(ManagerId));
+            }
+        }
+        public EmployeeModel Manager { get;set; }
+
         [NotMapped]
-        public bool CanSave => this[nameof(Name)] is null && this[nameof(CityName)] is null;
+        public bool CanSave => this[nameof(Name)] is null && this[nameof(CityName)] is null && this[nameof(ManagerId)] is null;
 
         public string Error => null;
 
@@ -72,6 +87,11 @@ namespace WarehouseManager.UI.Models
                     if (string.IsNullOrEmpty(CityName)) return "Nazwa nie może pozostać pusta.";
                     if (CityName.Length < 3) return "Minimalna długość nazwy to 3 znaki.";
                     if (CityName.Length > 64) return "Maksymalna długość nazwy to 64 znaki.";
+                }
+
+                if (columnName == nameof(ManagerId))
+                {
+                    if (ManagerId == default) return "Magazyn musi mieć kierownika!";
                 }
 
                 return null;

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using WarehouseManager.UI.Commands;
@@ -19,11 +20,14 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
         {
             _dbContext = dbContext;
             Model = warehouse ?? new WarehouseModel();
+            Employees = dbContext.Employees.ToList();
         }
 
         #region Properties
 
         public WarehouseModel Model { get; set; }
+        public int SelectedVal { get; set; }
+        public ICollection<EmployeeModel> Employees { get; set; }
 
         #endregion
 
@@ -54,6 +58,7 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             if (Model.WarehouseId == default)
             {
                 _dbContext.Warehouses.Add(Model);
+                var ss = SelectedVal;
             }
             else
             {
