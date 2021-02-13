@@ -20,6 +20,7 @@ namespace WarehouseManager.UI.ViewModels
         private ObservableCollection<SupplierModel> _suppliers;
         private Window _supplierAddFormView = null;
         private ICommand _addNewSupplier;
+        private ICommand _removeSupplierCommand;
 
         public SuppliersViewModel(AppDbContext dbContext)
         {
@@ -67,6 +68,21 @@ namespace WarehouseManager.UI.ViewModels
             }
         }
 
+        public ICommand RemoveSupplierCommand
+        {
+            get
+            {
+                if (_removeSupplierCommand is null)
+                {
+                    _removeSupplierCommand = new RelayCommand(
+                        s => RemoveSupplier((SupplierModel) s)
+                    );
+                }
+
+                return _removeSupplierCommand;
+            }
+        }
+
         public string Name => "Dostawcy";
 
         public void FillData()
@@ -85,6 +101,18 @@ namespace WarehouseManager.UI.ViewModels
         {
             SupplierCreatorView = null;
             Suppliers = null;
+            FillData();
+        }
+
+        public void RemoveSupplier(SupplierModel supplier)
+        {
+            var messageBoxResult = MessageBox.Show($"Czy na pewno chcesz usunąć dostawcę {supplier.Name}?",
+                "Usuwanie dostawcy", MessageBoxButton.YesNo);
+
+            if (messageBoxResult == MessageBoxResult.No) return;
+
+            _dbContext.Suppliers.Remove(supplier);
+            _dbContext.SaveChanges();
             FillData();
         }
     }
