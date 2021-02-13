@@ -18,6 +18,7 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
 
         private ICommand _addWarehouseCommand;
         private ICommand _editWarehouseCommand;
+        private ICommand _removeWarehouseCommand;
 
         private Window _warehouseFormView;
 
@@ -90,6 +91,21 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             }
         }
 
+        public ICommand RemoveWarehouseCommand
+        {
+            get
+            {
+                if (_removeWarehouseCommand is null)
+                {
+                    _removeWarehouseCommand = new RelayCommand(
+                        w => RemoveWarehouse(w as WarehouseModel)
+                    );
+                }
+
+                return _removeWarehouseCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -106,6 +122,18 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             WarehouseFormView = new WarehouseFormView(new WarehouseFormViewModel(_dbContext, warehouse));
             WarehouseFormView.Show();
             WarehouseFormView.Closed += OnFormClosed;
+        }
+
+        private void RemoveWarehouse(WarehouseModel warehouse)
+        {
+            var messageBoxResult = MessageBox.Show($"Czy na pewno chcesz usunąć magazyn {warehouse.Name}?",
+                "Usuwanie dostawcy", MessageBoxButton.YesNo);
+
+            if (messageBoxResult == MessageBoxResult.No) return;
+
+            _dbContext.Warehouses.Remove(warehouse);
+            _dbContext.SaveChanges();
+            FillData();
         }
 
         private void OnFormClosed(object sender, EventArgs args)

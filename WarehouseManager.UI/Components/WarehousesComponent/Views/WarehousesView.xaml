@@ -57,7 +57,9 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button
-                                Margin="5 2">
+                                Margin="5 2"
+                                Command="{Binding DataContext.RemoveWarehouseCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}">
                                 Usuń
                             </Button>
                         </DataTemplate>
