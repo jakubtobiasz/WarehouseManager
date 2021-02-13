@@ -24,7 +24,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             FontFamily="Arial"
-            Command="{Binding AddNewSupplier}">
+            Command="{Binding AddNewSupplierCommand}">
             +
         </Button>
         <DataGrid

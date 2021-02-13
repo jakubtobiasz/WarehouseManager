@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using WarehouseManager.UI.Commands;
@@ -18,8 +15,8 @@ namespace WarehouseManager.UI.ViewModels
 
         private readonly AppDbContext _dbContext;
         private ObservableCollection<SupplierModel> _suppliers;
-        private Window _supplierAddFormView = null;
-        private ICommand _addNewSupplier;
+        private Window _supplierFormView = null;
+        private ICommand _addNewSupplierCommand;
         private ICommand _removeSupplierCommand;
 
         public SuppliersViewModel(AppDbContext dbContext)
@@ -42,29 +39,29 @@ namespace WarehouseManager.UI.ViewModels
 
         public Window SupplierCreatorView
         {
-            get => _supplierAddFormView;
+            get => _supplierFormView;
             set
             {
-                if (_supplierAddFormView == value) return;
+                if (_supplierFormView == value) return;
 
-                _supplierAddFormView = value;
+                _supplierFormView = value;
                 OnPropertyChanged(nameof(SupplierCreatorView));
             }
         }
 
-        public ICommand AddNewSupplier
+        public ICommand AddNewSupplierCommand
         {
             get
             {
-                if (_addNewSupplier is null)
+                if (_addNewSupplierCommand is null)
                 {
-                    _addNewSupplier = new RelayCommand(
-                        _ => OpenSupplierCreator(),
+                    _addNewSupplierCommand = new RelayCommand(
+                        _ => AddSupplier(),
                         _ => SupplierCreatorView is null
                     );
                 }
 
-                return _addNewSupplier;
+                return _addNewSupplierCommand;
             }
         }
 
@@ -90,14 +87,14 @@ namespace WarehouseManager.UI.ViewModels
             Suppliers = new ObservableCollection<SupplierModel>(_dbContext.Suppliers);
         }
 
-        public void OpenSupplierCreator()
+        public void AddSupplier()
         {
             SupplierCreatorView = new SupplierFormView(new SupplierFormViewModel(_dbContext));
             SupplierCreatorView.Show();
-            SupplierCreatorView.Closed += OnCreatorClosed;
+            SupplierCreatorView.Closed += OnAddSupplierClosed;
         }
 
-        public void OnCreatorClosed(object sender, EventArgs eventArgs)
+        public void OnAddSupplierClosed(object sender, EventArgs eventArgs)
         {
             SupplierCreatorView = null;
             Suppliers = null;
