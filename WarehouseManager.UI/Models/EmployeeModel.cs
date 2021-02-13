@@ -10,7 +10,7 @@ namespace WarehouseManager.UI.Models
     public class EmployeeModel : ObservableObject, IDataErrorInfo
     {
         private int _employeeId;
-        private DateTime _hireDate;
+        private DateTime _hireDate = DateTime.Now;
         private string _firstName;
         private string _lastName;
         private string _accountNumber;
