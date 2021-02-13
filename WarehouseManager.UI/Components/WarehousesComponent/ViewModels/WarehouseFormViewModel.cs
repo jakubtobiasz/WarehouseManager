@@ -12,36 +12,42 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
     public class WarehouseFormViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
-        private WarehouseModel _model;
-        private ICommand _save;
+
+        private ICommand _saveCommand;
 
         public WarehouseFormViewModel(AppDbContext dbContext, WarehouseModel warehouse = null)
         {
             _dbContext = dbContext;
-            _model = warehouse ?? new WarehouseModel();
+            Model = warehouse ?? new WarehouseModel();
         }
 
-        public ICommand Save
+        #region Properties
+
+        public WarehouseModel Model { get; set; }
+
+        #endregion
+
+        #region Properties - Command
+
+        public ICommand SaveCommand
         {
             get
             {
-                if (_save is null)
+                if (_saveCommand is null)
                 {
-                    _save = new RelayCommand(
+                    _saveCommand = new RelayCommand(
                         _ => SaveChanges(),
                         _ => Model.CanSave
                     );
                 }
 
-                return _save;
+                return _saveCommand;
             }
         }
 
-        public WarehouseModel Model
-        {
-            get => _model;
-            set => _model = value;
-        }
+        #endregion
+
+        #region Methods
 
         public void SaveChanges()
         {
@@ -64,5 +70,7 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
         {
             _dbContext.Entry(Model).Reload();
         }
+
+        #endregion
     }
 }
