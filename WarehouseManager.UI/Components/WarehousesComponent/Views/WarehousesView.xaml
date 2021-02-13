@@ -23,7 +23,8 @@
             FontSize="34"
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
-            FontFamily="Arial">
+            FontFamily="Arial"
+            Command="{Binding AddWarehouseCommand}">
         +
         </Button>
         <DataGrid

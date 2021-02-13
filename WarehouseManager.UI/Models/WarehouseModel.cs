@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.RegularExpressions;
 using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
@@ -53,7 +52,7 @@ namespace WarehouseManager.UI.Models
         }
 
         [NotMapped]
-        public bool CanSave => this[nameof(Name)] is null;
+        public bool CanSave => this[nameof(Name)] is null && this[nameof(CityName)] is null;
 
         public string Error => null;
 

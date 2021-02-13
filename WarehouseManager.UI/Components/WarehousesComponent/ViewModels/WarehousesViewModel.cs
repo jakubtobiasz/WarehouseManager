@@ -1,5 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
+using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
+using WarehouseManager.UI.Components.WarehousesComponent.Views;
 using WarehouseManager.UI.Data;
 using WarehouseManager.UI.Models;
 using WarehouseManager.UI.Views;
@@ -10,6 +15,10 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
     {
         private readonly AppDbContext _dbContext;
         private ObservableCollection<WarehouseModel> _warehouses;
+
+        private ICommand _addWarehouseCommand;
+
+        private Window _warehouseFormView;
 
         public WarehousesViewModel(AppDbContext dbContext)
         {
@@ -33,15 +42,55 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             }
         }
 
+        private Window WarehouseFormView
+        {
+            get => _warehouseFormView;
+            set
+            {
+                if (_warehouseFormView == value) return;
+
+                _warehouseFormView = value;
+                OnPropertyChanged(nameof(WarehouseFormView));
+            }
+        }
+
         #endregion
 
         #region Properties - Commands
 
-        
+        public ICommand AddWarehouseCommand
+        {
+            get
+            {
+                if (_addWarehouseCommand is null)
+                {
+                    _addWarehouseCommand = new RelayCommand(
+                        _ => AddWarehouse(),
+                        _ => WarehouseFormView is null
+                    );
+                }
+
+                return _addWarehouseCommand;
+            }
+        }
 
         #endregion
 
         #region Methods
+
+        private void AddWarehouse()
+        {
+            WarehouseFormView = new WarehouseFormView(new WarehouseFormViewModel(_dbContext));
+            WarehouseFormView.Show();
+            WarehouseFormView.Closed += OnFormClosed;
+        }
+
+        private void OnFormClosed(object sender, EventArgs args)
+        {
+            WarehouseFormView = null;
+            Warehouses = null;
+            FillData();
+        }
 
         private void FillData()
         {
