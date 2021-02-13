@@ -9,16 +9,16 @@ using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI.ViewModels
 {
-    public class SupplierAddFormViewModel : ObservableObject
+    public class SupplierFormViewModel : ObservableObject
     {
-        private AppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
         private SupplierModel _model;
         private ICommand _save;
 
-        public SupplierAddFormViewModel(AppDbContext dbContext)
+        public SupplierFormViewModel(AppDbContext dbContext, SupplierModel supplier = null)
         {
             _dbContext = dbContext;
-            _model = new SupplierModel();
+            _model = supplier ??  new SupplierModel();
         }
 
         public ICommand Save
@@ -48,7 +48,7 @@ namespace WarehouseManager.UI.ViewModels
             _dbContext.Suppliers.Add(Model);
             _dbContext.SaveChanges();
 
-            var window = Application.Current.Windows.OfType<SupplierAddFormView>().SingleOrDefault(w => w.IsActive);
+            var window = Application.Current.Windows.OfType<SupplierFormView>().SingleOrDefault(w => w.IsActive);
             window?.Close();
         }
     }

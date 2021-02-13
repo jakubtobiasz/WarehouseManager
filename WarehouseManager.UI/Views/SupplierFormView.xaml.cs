@@ -6,9 +6,9 @@ namespace WarehouseManager.UI.Views
     /// <summary>
     /// Interaction logic for SupplierAddFormView.xaml
     /// </summary>
-    public partial class SupplierAddFormView : Window
+    public partial class SupplierFormView : Window
     {
-        public SupplierAddFormView(SupplierAddFormViewModel viewModel)
+        public SupplierFormView(SupplierFormViewModel viewModel)
         {
             DataContext = viewModel;
             InitializeComponent();

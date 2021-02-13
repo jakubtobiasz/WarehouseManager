@@ -92,7 +92,7 @@ namespace WarehouseManager.UI.ViewModels
 
         public void OpenSupplierCreator()
         {
-            SupplierCreatorView = new SupplierAddFormView(new SupplierAddFormViewModel(_dbContext));
+            SupplierCreatorView = new SupplierFormView(new SupplierFormViewModel(_dbContext));
             SupplierCreatorView.Show();
             SupplierCreatorView.Closed += OnCreatorClosed;
         }
