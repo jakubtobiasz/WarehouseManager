@@ -45,7 +45,9 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button
-                                Margin="5 2">
+                                Margin="5 2"
+                                Command="{Binding DataContext.EditWarehouseCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}">
                                 Edytuj
                             </Button>
                         </DataTemplate>

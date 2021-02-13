@@ -17,6 +17,7 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
         private ObservableCollection<WarehouseModel> _warehouses;
 
         private ICommand _addWarehouseCommand;
+        private ICommand _editWarehouseCommand;
 
         private Window _warehouseFormView;
 
@@ -74,6 +75,21 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             }
         }
 
+        public ICommand EditWarehouseCommand
+        {
+            get
+            {
+                if (_editWarehouseCommand is null)
+                {
+                    _editWarehouseCommand = new RelayCommand(
+                        w => EditWarehouse(w as WarehouseModel)
+                    );
+                }
+
+                return _editWarehouseCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -81,6 +97,13 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
         private void AddWarehouse()
         {
             WarehouseFormView = new WarehouseFormView(new WarehouseFormViewModel(_dbContext));
+            WarehouseFormView.Show();
+            WarehouseFormView.Closed += OnFormClosed;
+        }
+
+        private void EditWarehouse(WarehouseModel warehouse)
+        {
+            WarehouseFormView = new WarehouseFormView(new WarehouseFormViewModel(_dbContext, warehouse));
             WarehouseFormView.Show();
             WarehouseFormView.Closed += OnFormClosed;
         }
