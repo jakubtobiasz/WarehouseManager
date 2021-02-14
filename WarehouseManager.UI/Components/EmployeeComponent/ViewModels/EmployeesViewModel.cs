@@ -19,6 +19,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
         private ICommand _addEmployeeCommand;
         private ICommand _editEmployeeCommand;
         private ICommand _removeEmployeeCommand;
+        private ICommand _showManagedWarehousesCommand;
 
         private Window _employeeFormView;
 
@@ -106,6 +107,21 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
+        public ICommand ShowManagedWarehousesCommand
+        {
+            get
+            {
+                if (_showManagedWarehousesCommand is null)
+                {
+                    _showManagedWarehousesCommand = new RelayCommand(
+                        e => ShowManagedWarehouses(e as EmployeeModel)
+                    );
+                }
+
+                return _showManagedWarehousesCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -134,6 +150,13 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             _dbContext.Employees.Remove(employee);
             _dbContext.SaveChanges();
             FillData();
+        }
+
+        private void ShowManagedWarehouses(EmployeeModel employee)
+        {
+            var employeeManagedWarehousesView =
+                new EmployeeManagedWarehousesView(new EmployeeManagedWarehousesViewModel(_dbContext, employee));
+            employeeManagedWarehousesView.Show();
         }
 
         private void OnFormClosed(object sender, EventArgs args)

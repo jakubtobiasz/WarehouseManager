@@ -48,6 +48,18 @@
                         <DataTemplate>
                             <Button
                                 Margin="5 2"
+                                Command="{Binding DataContext.ShowManagedWarehousesCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}">
+                                Zobacz zarządzane magazyny
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Margin="5 2"
                                 Command="{Binding DataContext.EditEmployeeCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding}">
                                 Edytuj

@@ -1,0 +1,39 @@
+﻿<Window x:Class="WarehouseManager.UI.Components.EmployeeComponent.Views.EmployeeManagedWarehousesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Zarządzane magazyny" Height="650" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            Margin="10,0,0,0"
+            FontSize="18"
+            Text="{Binding Employee.FullName, StringFormat='Magazyn zarządzany przez {0}'}"/>
+        <DataGrid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Grid.Column="0"
+            ItemsSource="{Binding Employee.ManagedWarehouses}"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserReorderColumns="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Miejscowość" Binding="{Binding CityName}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

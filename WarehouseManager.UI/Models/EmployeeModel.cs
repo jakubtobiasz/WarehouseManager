@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace WarehouseManager.UI.Models
         private string _firstName;
         private string _lastName;
         private string _accountNumber;
+        private ObservableCollection<WarehouseModel> _managedWarehouses;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -83,7 +85,17 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public ICollection<WarehouseModel> ManagedWarehouses { get; set; }
+        public ObservableCollection<WarehouseModel> ManagedWarehouses
+        {
+            get => _managedWarehouses;
+            set
+            {
+                if (_managedWarehouses == value) return;
+
+                _managedWarehouses = value;
+                OnPropertyChanged(nameof(ManagedWarehouses));
+            }
+        }
 
         [NotMapped] public string FullName => $"{FirstName} {LastName}";
 
