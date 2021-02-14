@@ -4,6 +4,7 @@ using System.Windows.Input;
 using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.EmployeeComponent.ViewModels;
+using WarehouseManager.UI.Components.ProductsComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
 using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
 using WarehouseManager.UI.Views;
@@ -17,11 +18,12 @@ namespace WarehouseManager.UI.Components.AppComponent.ViewModels
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
 
-        public AppViewModel(SuppliersViewModel suppliersViewModel, WarehousesViewModel warehousesViewModel, EmployeesViewModel employeesViewModel)
+        public AppViewModel(SuppliersViewModel suppliersViewModel, WarehousesViewModel warehousesViewModel, EmployeesViewModel employeesViewModel, ProductsViewModel productsViewModel)
         {
             PageViewModels.Add(suppliersViewModel);
             PageViewModels.Add(warehousesViewModel);
             PageViewModels.Add(employeesViewModel);
+            PageViewModels.Add(productsViewModel);
 
             CurrentPageViewModel = PageViewModels[0];
         }

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using WarehouseManager.UI.Components.AppComponent.ViewModels;
 using WarehouseManager.UI.Components.AppComponent.Views;
 using WarehouseManager.UI.Components.EmployeeComponent.ViewModels;
+using WarehouseManager.UI.Components.ProductsComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliersComponent.Views;
 using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
@@ -34,11 +35,12 @@ namespace WarehouseManager.UI
                 options.UseSqlite("Data Source = warehouse_manager.db");
             });
 
-            services.AddTransient<SupplierFormViewModel>();
             services.AddTransient<SupplierFormView>();
+            services.AddTransient<SupplierFormViewModel>();
             services.AddTransient<SuppliersViewModel>();
             services.AddTransient<WarehousesViewModel>();
             services.AddTransient<EmployeesViewModel>();
+            services.AddTransient<ProductsViewModel>();
             services.AddTransient<AppViewModel>();
             services.AddSingleton<AppView>();
         }

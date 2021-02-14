@@ -10,7 +10,6 @@ namespace WarehouseManager.UI.Models
         private int _productId;
         private string _name;
         private string _description;
-        private decimal _price;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -52,21 +51,8 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        [DataType(DataType.Currency)]
-        public decimal Price
-        {
-            get => _price;
-            set
-            {
-                if (value == _price) return;
-
-                _price = value;
-                OnPropertyChanged(nameof(Price));
-            }
-        }
-
         [NotMapped]
-        public bool CanSave => this[nameof(Name)] is null && this[nameof(Description)] is null && this[nameof(Price)] is null;
+        public bool CanSave => this[nameof(Name)] is null && this[nameof(Description)] is null;
 
         public string Error => null;
 
