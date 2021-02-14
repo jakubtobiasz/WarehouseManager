@@ -14,5 +14,13 @@ namespace WarehouseManager.UI.Data
         public DbSet<WarehouseModel> Warehouses { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; } 
         public DbSet<ProductModel> Products { get; set; }
+        public DbSet<SupplyModel> Supplies { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SupplyModel>()
+                .Property(s => s.SupplyStatus)
+                .HasConversion<int>();
+        }
     }
 }
