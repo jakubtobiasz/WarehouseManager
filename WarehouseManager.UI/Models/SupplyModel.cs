@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using WarehouseManager.UI.Common;
@@ -10,6 +11,7 @@ namespace WarehouseManager.UI.Models
         private int _supplyId;
         private DateTime _statusUpdateTime;
         private SupplyStatusEnum _supplyStatus;
+        private ObservableCollection<ProductToSupplyModel> _products;
 
         [Key]
         public int SupplyId
@@ -33,6 +35,18 @@ namespace WarehouseManager.UI.Models
 
                 _statusUpdateTime = value;
                 OnPropertyChanged(nameof(StatusUpdateTime));
+            }
+        }
+
+        public ObservableCollection<ProductToSupplyModel> Products
+        {
+            get => _products;
+            set
+            {
+                if (_products == value) return;
+
+                _products = value;
+                OnPropertyChanged(nameof(Products));
             }
         }
 

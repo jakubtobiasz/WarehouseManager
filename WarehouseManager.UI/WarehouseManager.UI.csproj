@@ -66,4 +66,9 @@
     </Page>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\SuppliesComponent\Views\" />
+    <Folder Include="Components\SuppliesComponent\ViewModels\" />
+  </ItemGroup>
+
 </Project>
