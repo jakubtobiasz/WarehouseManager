@@ -19,7 +19,7 @@
             VerticalAlignment="Center"
             Margin="10,0,0,0"
             FontSize="18"
-            Text="{Binding Employee.FullName, StringFormat='Magazyn zarządzany przez {0}'}"/>
+            Text="{Binding Employee.FullName, StringFormat='Magazyny zarządzane przez {0}'}"/>
         <DataGrid
             Grid.Row="1"
             Grid.ColumnSpan="2"
