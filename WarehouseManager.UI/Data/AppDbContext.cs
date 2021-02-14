@@ -13,5 +13,6 @@ namespace WarehouseManager.UI.Data
         public DbSet<SupplierModel> Suppliers { get; set; }
         public DbSet<WarehouseModel> Warehouses { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; } 
+        public DbSet<ProductModel> Products { get; set; }
     }
 }
