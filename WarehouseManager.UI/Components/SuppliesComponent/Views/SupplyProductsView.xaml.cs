@@ -11,6 +11,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.Views
         public SupplyProductsView(SupplyProductsViewModel viewModel)
         {
             DataContext = viewModel;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
     }
