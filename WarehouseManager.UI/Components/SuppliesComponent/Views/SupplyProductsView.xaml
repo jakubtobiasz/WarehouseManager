@@ -1,0 +1,48 @@
+﻿<Window x:Class="WarehouseManager.UI.Components.SuppliesComponent.Views.SupplyProductsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseManager.UI.Components.SuppliesComponent.Views"
+        mc:Ignorable="d"
+        Title="SupplyProductsView" Height="450" Width="600">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="32">Produkty w dostawie</TextBlock>
+        <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="40px"
+            Height="40px"
+            FontSize="34"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontFamily="Arial"
+            Command="{Binding AddCommand}">
+            +
+        </Button>
+        <DataGrid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Grid.Column="0"
+            ItemsSource="{Binding Products}"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserReorderColumns="False"
+            CanUserDeleteRows="False"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ProductToSupplyId}" />
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Product.Name}" />
+                <DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

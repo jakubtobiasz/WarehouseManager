@@ -52,7 +52,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public SupplyModel Supply
+        public virtual SupplyModel Supply
         {
             get => _supply;
             set
@@ -77,7 +77,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public ProductModel Product
+        public virtual ProductModel Product
         {
             get => _product;
             set

@@ -38,7 +38,7 @@
             CanUserDeleteRows="False"
             IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Product}" />
+                <DataGridTextColumn Header="ID" Binding="{Binding ProductId}" />
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Opis" Binding="{Binding Description}" />
                 <DataGridTemplateColumn>

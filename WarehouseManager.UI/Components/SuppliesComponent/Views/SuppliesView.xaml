@@ -48,7 +48,7 @@
                         <DataTemplate>
                             <Button
                                 Margin="5 2"
-                                Command="{Binding DataContext.RemoveSupplierCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                Command="{Binding DataContext.ShowProductsCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding}"
                             >
                                 Zawartość
@@ -61,7 +61,7 @@
                         <DataTemplate>
                             <Button
                                 Margin="5 2"
-                                Command="{Binding DataContext.EditSupplierCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                Command="{Binding DataContext.EditCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding}"
                             >
                                 Edytuj

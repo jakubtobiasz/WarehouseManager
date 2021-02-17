@@ -66,9 +66,9 @@ namespace WarehouseManager.UI.Models
                 OnPropertyChanged(nameof(ManagerId));
             }
         }
-        public EmployeeModel Manager { get;set; }
+        public virtual EmployeeModel Manager { get;set; }
 
-        public ObservableCollection<SupplyModel> Supplies
+        public virtual ObservableCollection<SupplyModel> Supplies
         {
             get => _supplies;
             set

@@ -53,7 +53,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public ObservableCollection<ProductToSupplyModel> Supplies
+        public virtual ObservableCollection<ProductToSupplyModel> Supplies
         {
             get => _supplies;
             set

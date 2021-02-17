@@ -17,6 +17,8 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
         private ObservableCollection<SupplyModel> _supplies;
 
         private ICommand _addCommand;
+        private ICommand _editCommand;
+        private ICommand _showProductsCommand;
 
         public SuppliesViewModel(AppDbContext dbContext)
         {
@@ -59,6 +61,36 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             }
         }
 
+        public ICommand EditCommand
+        {
+            get
+            {
+                if (_editCommand is null)
+                {
+                    _editCommand = new RelayCommand(
+                        s => Edit(s as SupplyModel)
+                    );
+                }
+
+                return _editCommand;
+            }
+        }
+
+        public ICommand ShowProductsCommand
+        {
+            get
+            {
+                if (_showProductsCommand is null)
+                {
+                    _showProductsCommand = new RelayCommand(
+                        s => ShowProducts(s as SupplyModel)
+                    );
+                }
+
+                return _showProductsCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -74,6 +106,19 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             var form = new SupplyFormView(new SuppliesFormViewModel(_dbContext));
             form.Show();
             form.Closed += OnFormClosed;
+        }
+
+        private void Edit(SupplyModel model)
+        {
+            var form = new SupplyFormView(new SuppliesFormViewModel(_dbContext, model));
+            form.Show();
+            form.Closed += OnFormClosed;
+        }
+
+        private void ShowProducts(SupplyModel model)
+        {
+            var form = new SupplyProductsView(new SupplyProductsViewModel(_dbContext, model));
+            form.Show();
         }
 
         private void OnFormClosed(object sender, EventArgs args)

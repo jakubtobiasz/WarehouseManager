@@ -33,7 +33,9 @@ namespace WarehouseManager.UI
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlite("Data Source = warehouse_manager.db");
+                options
+                    .UseLazyLoadingProxies()
+                    .UseSqlite("Data Source = warehouse_manager.db");
             });
 
             services.AddTransient<SupplierFormView>();

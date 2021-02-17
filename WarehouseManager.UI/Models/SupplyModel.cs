@@ -43,7 +43,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public ObservableCollection<ProductToSupplyModel> Products
+        public virtual ObservableCollection<ProductToSupplyModel> Products
         {
             get => _products;
             set
@@ -68,7 +68,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public SupplierModel Supplier
+        public virtual SupplierModel Supplier
         {
             get => _supplier;
             set
@@ -93,7 +93,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public WarehouseModel Warehouse
+        public virtual WarehouseModel Warehouse
         {
             get => _warehouse;
             set

@@ -85,7 +85,7 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public ObservableCollection<WarehouseModel> ManagedWarehouses
+        public virtual ObservableCollection<WarehouseModel> ManagedWarehouses
         {
             get => _managedWarehouses;
             set

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -31,7 +32,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
         public ICollection<WarehouseModel> Warehouses { get; set; }
 
         public Dictionary<SupplyModel.SupplyStatusEnum, string> Statuses =>
-            new Dictionary<SupplyModel.SupplyStatusEnum, string>
+            new()
             {
                 {  SupplyModel.SupplyStatusEnum.Added, "Dodany" },
                 {  SupplyModel.SupplyStatusEnum.InTransit, "W transporcie" },
@@ -71,6 +72,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             }
             else
             {
+                Model.StatusUpdateTime = DateTime.Now;
                 _dbContext.Supplies.Update(Model);
             }
 
