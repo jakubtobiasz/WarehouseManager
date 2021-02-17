@@ -11,6 +11,8 @@
         xmlns:views2="clr-namespace:WarehouseManager.UI.Components.EmployeeComponent.Views"
         xmlns:viewModels3="clr-namespace:WarehouseManager.UI.Components.ProductsComponent.ViewModels"
         xmlns:views3="clr-namespace:WarehouseManager.UI.Components.ProductsComponent.Views"
+        xmlns:viewModels4="clr-namespace:WarehouseManager.UI.Components.SuppliesComponent.ViewModels"
+        xmlns:views4="clr-namespace:WarehouseManager.UI.Components.SuppliesComponent.Views"
         mc:Ignorable="d"
         Title="WarehouseManager - Zarządzanie dostawami" Height="450" Width="850">
     <Window.Resources>
@@ -25,6 +27,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels3:ProductsViewModel}">
             <views3:ProductsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels4:SuppliesViewModel}">
+            <views4:SuppliesView />
         </DataTemplate>
     </Window.Resources>
  

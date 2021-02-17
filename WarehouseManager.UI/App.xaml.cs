@@ -8,6 +8,7 @@ using WarehouseManager.UI.Components.EmployeeComponent.ViewModels;
 using WarehouseManager.UI.Components.ProductsComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliersComponent.Views;
+using WarehouseManager.UI.Components.SuppliesComponent.ViewModels;
 using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
 using WarehouseManager.UI.Data;
 using WarehouseManager.UI.Views;
@@ -41,6 +42,7 @@ namespace WarehouseManager.UI
             services.AddTransient<WarehousesViewModel>();
             services.AddTransient<EmployeesViewModel>();
             services.AddTransient<ProductsViewModel>();
+            services.AddTransient<SuppliesViewModel>();
             services.AddTransient<AppViewModel>();
             services.AddSingleton<AppView>();
         }

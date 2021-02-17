@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +14,7 @@ namespace WarehouseManager.UI.Models
         private string _name;
         private string _nip;
         private string _accountNumber;
+        private ObservableCollection<SupplyModel> _supplies;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -66,6 +68,18 @@ namespace WarehouseManager.UI.Models
 
                 _accountNumber = value;
                 OnPropertyChanged(nameof(AccountNumber));
+            }
+        }
+
+        public ObservableCollection<SupplyModel> Supplies
+        {
+            get => _supplies;
+            set
+            {
+                if (_supplies == value) return;
+
+                _supplies = value;
+                OnPropertyChanged(nameof(Supplies));
             }
         }
 

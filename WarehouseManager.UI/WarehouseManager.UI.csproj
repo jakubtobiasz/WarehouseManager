@@ -33,6 +33,9 @@
     <Compile Update="Components\ProductsComponent\Views\ProductsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Components\SuppliesComponent\Views\SupplyFormView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -64,11 +67,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\SuppliesComponent\Views\" />
-    <Folder Include="Components\SuppliesComponent\ViewModels\" />
+    <Page Update="Components\SuppliesComponent\Views\SupplyFormView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

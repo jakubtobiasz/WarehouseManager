@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
@@ -9,9 +10,13 @@ namespace WarehouseManager.UI.Models
     public class SupplyModel : ObservableObject, IDataErrorInfo
     {
         private int _supplyId;
-        private DateTime _statusUpdateTime;
-        private SupplyStatusEnum _supplyStatus;
+        private DateTime _statusUpdateTime = DateTime.Now;
+        private SupplyStatusEnum _supplyStatus = SupplyStatusEnum.Added;
         private ObservableCollection<ProductToSupplyModel> _products;
+        private int _supplierId;
+        private SupplierModel _supplier;
+        private int _warehouseId;
+        private WarehouseModel _warehouse;
 
         [Key]
         public int SupplyId
@@ -50,6 +55,56 @@ namespace WarehouseManager.UI.Models
             }
         }
 
+        [ForeignKey(nameof(Supplier))]
+        public int SupplierId
+        {
+            get => _supplierId;
+            set
+            {
+                if (_supplierId == value) return;
+
+                _supplierId = value;
+                OnPropertyChanged(nameof(SupplierId));
+            }
+        }
+
+        public SupplierModel Supplier
+        {
+            get => _supplier;
+            set
+            {
+                if (_supplier == value) return;
+
+                _supplier = value;
+                OnPropertyChanged(nameof(Supplier));
+            }
+        }
+        
+        [ForeignKey(nameof(Warehouse))]
+        public int WarehouseId
+        {
+            get => _warehouseId;
+            set
+            {
+                if (_warehouseId == value) return;
+
+                _warehouseId = value;
+                OnPropertyChanged(nameof(WarehouseId));
+            }
+        }
+
+        public WarehouseModel Warehouse
+        {
+            get => _warehouse;
+            set
+            {
+                if (_warehouse == value) return;
+
+                _warehouse = value;
+                OnPropertyChanged(nameof(Warehouse));
+            }
+        }
+
         public SupplyStatusEnum SupplyStatus
         {
             get => _supplyStatus;
@@ -62,26 +117,34 @@ namespace WarehouseManager.UI.Models
             }
         }
 
-        public string Error => null;
-
-        public string this[string columnName]
+        [NotMapped]
+        public string SupplyStatusName
         {
             get
             {
-                if (columnName == nameof(SupplyStatus))
+                return SupplyStatus switch
                 {
-                    if (SupplyStatus == default) return "Zamówienie nie może pozostać bez statusu.";
-                }
-
-                return null;
+                    SupplyStatusEnum.Added => "Dodana",
+                    SupplyStatusEnum.Canceled => "Anulowana",
+                    SupplyStatusEnum.Delivered => "Dostarczona",
+                    SupplyStatusEnum.InTransit => "W transporcie",
+                    _ => "n/a"
+                };
             }
         }
+
+        [NotMapped] public bool CanSave => true;
+
+        public string Error => null;
+
+        public string this[string columnName] => null;
 
         public enum SupplyStatusEnum
         {
             Added,
             InTransit,
-            Delivered
+            Delivered,
+            Canceled,
         }
     }
 }

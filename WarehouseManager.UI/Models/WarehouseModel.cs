@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WarehouseManager.UI.Common;
@@ -11,6 +12,7 @@ namespace WarehouseManager.UI.Models
         private string _name;
         private string _cityName;
         private int _managerId;
+        private ObservableCollection<SupplyModel> _supplies;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -65,6 +67,18 @@ namespace WarehouseManager.UI.Models
             }
         }
         public EmployeeModel Manager { get;set; }
+
+        public ObservableCollection<SupplyModel> Supplies
+        {
+            get => _supplies;
+            set
+            {
+                if (_supplies == value) return;
+
+                _supplies = value;
+                OnPropertyChanged(nameof(Supplies));
+            }
+        }
 
         [NotMapped]
         public bool CanSave => this[nameof(Name)] is null && this[nameof(CityName)] is null && this[nameof(ManagerId)] is null;
