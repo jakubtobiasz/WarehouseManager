@@ -20,6 +20,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
         private readonly SupplyModel _supply;
 
         private ICommand _addCommand;
+        private ICommand _removeCommand;
 
         public SupplyProductsViewModel(AppDbContext dbContext, SupplyModel supply)
         {
@@ -52,6 +53,22 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             }
         }
 
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                if (_removeCommand is null)
+                {
+                    _removeCommand = new RelayCommand(
+                        p => Remove(p as ProductToSupplyModel),
+                        p => (p as ProductToSupplyModel)?.Supply.SupplyStatus == SupplyModel.SupplyStatusEnum.Added
+                    );
+                }
+
+                return _removeCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -60,10 +77,19 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
         {
             var form = new AddProductView(new AddProductViewModel(_dbContext, _supply));
             form.Show();
+            form.Closed += OnFormClosed;
         }
 
         private void OnFormClosed(object sender, EventArgs args)
         {
+            _dbContext.Entry(_supply).Reload();
+            FillData();
+        }
+
+        public void Remove(ProductToSupplyModel model)
+        {
+            _dbContext.ProductsToSupplies.Remove(model);
+            _dbContext.SaveChanges();
             _dbContext.Entry(_supply).Reload();
             FillData();
         }

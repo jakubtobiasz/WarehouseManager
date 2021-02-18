@@ -42,6 +42,19 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding ProductToSupplyId}" />
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Product.Name}" />
                 <DataGridTextColumn Header="Ilość" Binding="{Binding Quantity}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Margin="5 2"
+                                Command="{Binding DataContext.RemoveCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding}"
+                            >
+                                Usuń
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
