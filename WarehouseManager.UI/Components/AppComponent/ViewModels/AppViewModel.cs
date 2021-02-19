@@ -10,6 +10,10 @@ using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
 
 namespace WarehouseManager.UI.Components.AppComponent.ViewModels
 {
+    /// <summary>
+    /// The AppViewModel class.
+    /// Contains methods for AppView view.
+    /// </summary>
     public class AppViewModel : ObservableObject
     {
         private ICommand _changePageCommand;
@@ -28,6 +32,9 @@ namespace WarehouseManager.UI.Components.AppComponent.ViewModels
             CurrentPageViewModel = PageViewModels[0];
         }
 
+        /// <summary>
+        /// Changes current page to the passed one.
+        /// </summary>
         public ICommand ChangePageCommand
         {
             get
@@ -35,7 +42,7 @@ namespace WarehouseManager.UI.Components.AppComponent.ViewModels
                 if (_changePageCommand == null)
                 {
                     _changePageCommand = new RelayCommand(
-                        p => ChangeViewModel((IPageViewModel) p),
+                        p => ChangePage((IPageViewModel) p),
                         p => p is IPageViewModel && p != CurrentPageViewModel
                     );
                 }
@@ -44,11 +51,17 @@ namespace WarehouseManager.UI.Components.AppComponent.ViewModels
             }
         }
 
+        /// <summary>
+        /// Holds all pages.
+        /// </summary>
         public List<IPageViewModel> PageViewModels
         {
             get { return _pageViewModels ??= new List<IPageViewModel>(); }
         }
 
+        /// <summary>
+        /// Holds current page.
+        /// </summary>
         public IPageViewModel CurrentPageViewModel
         {
             get => _currentPageViewModel;
@@ -57,11 +70,11 @@ namespace WarehouseManager.UI.Components.AppComponent.ViewModels
                 if (_currentPageViewModel == value) return;
 
                 _currentPageViewModel = value;
-                OnPropertyChanged("CurrentPageViewModel");
+                OnPropertyChanged(nameof(CurrentPageViewModel));
             }
         }
 
-        public void ChangeViewModel(IPageViewModel viewModel)
+        public void ChangePage(IPageViewModel viewModel)
         {
             if (!PageViewModels.Contains(viewModel))
             {
