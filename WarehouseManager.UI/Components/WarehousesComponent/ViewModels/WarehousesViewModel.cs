@@ -10,6 +10,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
 {
+    /// <summary>
+    /// The WarehousesViewModel class.
+    /// Contains methods for WarehousesView view.
+    /// </summary>
     public class WarehousesViewModel : ObservableObject, IPageViewModel
     {
         private readonly AppDbContext _dbContext;
@@ -59,6 +63,9 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
 
         #region Properties - Commands
 
+        /// <summary>
+        /// Opens the adding a new warehouse form.
+        /// </summary>
         public ICommand AddWarehouseCommand
         {
             get
@@ -75,6 +82,9 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             }
         }
 
+        /// <summary>
+        /// Opens the editing a new warehouse form.
+        /// </summary>
         public ICommand EditWarehouseCommand
         {
             get
@@ -90,6 +100,9 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             }
         }
 
+        /// <summary>
+        /// Removes the passed warehouse.
+        /// </summary>
         public ICommand RemoveWarehouseCommand
         {
             get

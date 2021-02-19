@@ -24,13 +24,23 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Holds the WarehouseModel instance.
+        /// </summary>
         public WarehouseModel Model { get; set; }
+
+        /// <summary>
+        /// Holds the collection of EmployeeModel instances.
+        /// </summary>
         public ICollection<EmployeeModel> Employees { get; set; }
 
         #endregion
 
         #region Properties - Command
 
+        /// <summary>
+        /// Saves changes when the conditions met.
+        /// </summary>
         public ICommand SaveCommand
         {
             get
@@ -51,7 +61,7 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
 
         #region Methods
 
-        public void SaveChanges()
+        private void SaveChanges()
         {
             if (Model.WarehouseId == default)
             {
@@ -68,6 +78,9 @@ namespace WarehouseManager.UI.Components.WarehousesComponent.ViewModels
             window?.Close();
         }
 
+        /// <summary>
+        /// Realods the Model entry.
+        /// </summary>
         public void ReloadModel()
         {
             _dbContext.Entry(Model).Reload();
