@@ -24,7 +24,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             FontFamily="Arial"
-            Command="{Binding AddNewSupplierCommand}">
+            Command="{Binding AddCommand}">
             +
         </Button>
         <DataGrid
@@ -47,7 +47,7 @@
                         <DataTemplate>
                             <Button
                                 Margin="5 2"
-                                Command="{Binding DataContext.EditSupplierCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                Command="{Binding DataContext.EditCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding}"
                             >
                                 Edytuj
@@ -60,7 +60,7 @@
                         <DataTemplate>
                             <Button
                                 Margin="5 2"
-                                Command="{Binding DataContext.RemoveSupplierCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                Command="{Binding DataContext.RemoveCommand, RelativeSource= {RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding}"
                                 >
                                 Usuń

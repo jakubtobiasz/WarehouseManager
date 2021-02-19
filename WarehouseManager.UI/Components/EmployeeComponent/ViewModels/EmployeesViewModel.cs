@@ -67,7 +67,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 
         #region Properties - Commands
 
-        private ICommand AddEmployeeCommand
+        public ICommand AddEmployeeCommand
         {
             get
             {
@@ -83,7 +83,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
-        private ICommand EditEmployeeCommand
+        public ICommand EditEmployeeCommand
         {
             get
             {
@@ -98,7 +98,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
-        private ICommand RemoveEmployeeCommand
+        public ICommand RemoveEmployeeCommand
         {
             get
             {
@@ -113,7 +113,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
-        private ICommand ShowManagedWarehousesCommand
+        public ICommand ShowManagedWarehousesCommand
         {
             get
             {

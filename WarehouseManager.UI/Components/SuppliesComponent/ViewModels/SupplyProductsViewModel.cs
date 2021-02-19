@@ -50,7 +50,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
                 {
                     _addCommand = new RelayCommand(
                         _ => Add(),
-                        p => (p as ProductToSupplyModel)?.Supply.SupplyStatus == SupplyModel.SupplyStatusEnum.Added
+                        _ => _supply.SupplyStatus == SupplyModel.SupplyStatusEnum.Added
                     );
                 }
 

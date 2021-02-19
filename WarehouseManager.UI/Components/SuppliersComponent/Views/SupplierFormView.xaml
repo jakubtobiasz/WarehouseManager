@@ -60,7 +60,7 @@
             </StackPanel>
             <Button
                 Margin="0,15,0,0"
-                Command="{Binding Save}">
+                Command="{Binding SaveCommand}">
                 Zapisz
             </Button>
         </StackPanel>
