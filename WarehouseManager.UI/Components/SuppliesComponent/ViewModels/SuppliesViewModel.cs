@@ -9,6 +9,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 {
+    /// <summary>
+    /// The SuppliesViewModel class.
+    /// Contains methods for SuppliesView view.
+    /// </summary>
     public class SuppliesViewModel : ObservableObject, IPageViewModel
     {
         private readonly AppDbContext _dbContext;

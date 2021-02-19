@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.SuppliesComponent.Views;
 using WarehouseManager.UI.Data;
@@ -13,6 +8,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 {
+    /// <summary>
+    /// The SupplyProductsViewModel class.
+    /// Contains methods for SupplyProductsView view.
+    /// </summary>
     public class SupplyProductsViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
@@ -31,12 +30,18 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Holds the collection of ProductToSupplyModel instances.
+        /// </summary>
         public ObservableCollection<ProductToSupplyModel> Products { get; set; }
 
         #endregion
 
         #region Properties - Commands
 
+        /// <summary>
+        /// Opens the adding a new ProductToSupply form.
+        /// </summary>
         public ICommand AddCommand
         {
             get
@@ -53,6 +58,9 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             }
         }
 
+        /// <summary>
+        /// Removes provided ProductToSupply entry.
+        /// </summary>
         public ICommand RemoveCommand
         {
             get
@@ -73,7 +81,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 
         #region Methods
 
-        public void Add()
+        private void Add()
         {
             var form = new AddProductView(new AddProductViewModel(_dbContext, _supply));
             form.Show();
@@ -86,7 +94,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             FillData();
         }
 
-        public void Remove(ProductToSupplyModel model)
+        private void Remove(ProductToSupplyModel model)
         {
             _dbContext.ProductsToSupplies.Remove(model);
             _dbContext.SaveChanges();
@@ -94,7 +102,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             FillData();
         }
 
-        public void FillData()
+        private void FillData()
         {
             Products = null;
             Products = _supply.Products;

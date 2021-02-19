@@ -10,6 +10,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 {
+    /// <summary>
+    /// The SuppliesFormViewModel class.
+    /// Contains methods for SuppliesFormView view.
+    /// </summary>
     public class SuppliesFormViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
@@ -43,6 +47,9 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 
         #region Properties - Command
 
+        /// <summary>
+        /// Saves changes when conditions met.
+        /// </summary>
         public ICommand SaveCommand
         {
             get
@@ -50,7 +57,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
                 if (_saveCommand is null)
                 {
                     _saveCommand = new RelayCommand(
-                        _ => SaveChanges(),
+                        _ => Save(),
                         _ => Model.CanSave
                     );
                 }
@@ -63,7 +70,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 
         #region Methods
 
-        public void SaveChanges()
+        private void Save()
         {
             if (Model.SupplyId == default)
             {
@@ -81,6 +88,9 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
             window?.Close();
         }
 
+        /// <summary>
+        /// Reloads a Model entry.
+        /// </summary>
         public void ReloadModel()
         {
             _dbContext.Entry(Model).Reload();

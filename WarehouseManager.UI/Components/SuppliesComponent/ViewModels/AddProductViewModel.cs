@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -10,17 +9,19 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 {
+    /// <summary>
+    /// The AddProductViewModel class.
+    /// Contains methods for AddProductView view.
+    /// </summary>
     public class AddProductViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
-        private readonly SupplyModel _supply;
 
         private ICommand _saveCommand;
 
         public AddProductViewModel(AppDbContext dbContext, SupplyModel supply)
         {
             _dbContext = dbContext;
-            _supply = supply;
 
             Products = _dbContext.Products.ToList();
             Model = new ProductToSupplyModel
@@ -31,14 +32,23 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Holds a collection of ProductModel instances.
+        /// </summary>
         public ICollection<ProductModel> Products { get; set; }
 
+        /// <summary>
+        /// Holds a ProductToSupplyModel instance.
+        /// </summary>
         public ProductToSupplyModel Model { get; set; }
 
         #endregion
 
         #region Properties - Commands
 
+        /// <summary>
+        /// Saves changes when conditions met.
+        /// </summary>
         public ICommand SaveCommand
         {
             get
@@ -58,7 +68,7 @@ namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 
         #region Methods
 
-        public void Save()
+        private void Save()
         {
             _dbContext.ProductsToSupplies.Add(Model);
             _dbContext.SaveChanges();
