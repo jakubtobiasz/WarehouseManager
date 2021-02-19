@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject>WarehouseManager.UI.App</StartupObject>
     <ApplicationIcon>.\Resources\europaleta.ico</ApplicationIcon>
+    <AssemblyName>WarehouseManager</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
