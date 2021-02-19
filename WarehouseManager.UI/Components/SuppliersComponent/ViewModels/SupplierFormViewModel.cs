@@ -8,41 +8,54 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
 {
+    /// <summary>
+    /// The SupplierFormViewModel class.
+    /// Contains methods for SupplierFormView view.
+    /// </summary>
     public class SupplierFormViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
-        private SupplierModel _model;
-        private ICommand _save;
+
+        private ICommand _saveCommand;
 
         public SupplierFormViewModel(AppDbContext dbContext, SupplierModel supplier = null)
         {
             _dbContext = dbContext;
-            _model = supplier ?? new SupplierModel();
+            Model = supplier ?? new SupplierModel();
         }
 
-        public ICommand Save
+        #region Properties
+
+        public SupplierModel Model { get; set; }
+
+        #endregion
+
+        #region Properties - Commands
+
+        /// <summary>
+        /// Saves changes when conditions met.
+        /// </summary>
+        public ICommand SaveCommand
         {
             get
             {
-                if (_save is null)
+                if (_saveCommand is null)
                 {
-                    _save = new RelayCommand(
-                        _ => SaveChanges(),
+                    _saveCommand = new RelayCommand(
+                        _ => Save(),
                         _ => Model.CanSave
                     );
                 }
 
-                return _save;
+                return _saveCommand;
             }
         }
 
-        public SupplierModel Model
-        {
-            get => _model;
-            set => _model = value;
-        }
+        #endregion
 
-        public void SaveChanges()
+        #region Methods
+
+        private void Save()
         {
             if (Model.SupplierId == default)
             {
@@ -63,5 +76,7 @@ namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
         {
             _dbContext.Entry(Model).Reload();
         }
+
+        #endregion
     }
 }

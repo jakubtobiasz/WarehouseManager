@@ -9,15 +9,20 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
 {
+    /// <summary>
+    /// The SuppliersViewModel class.
+    /// Contains methods for SuppliersView view.
+    /// </summary>
     public class SuppliersViewModel : ObservableObject, IPageViewModel
     {
 
         private readonly AppDbContext _dbContext;
         private ObservableCollection<SupplierModel> _suppliers;
         private Window _supplierFormView = null;
-        private ICommand _addNewSupplierCommand;
-        private ICommand _removeSupplierCommand;
-        private ICommand _editSupplierCommand;
+
+        private ICommand _addCommand;
+        private ICommand _removeCommand;
+        private ICommand _editCommand;
 
         public SuppliersViewModel(AppDbContext dbContext)
         {
@@ -25,6 +30,13 @@ namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
             FillData();
         }
 
+        #region Properties
+
+        public string Name => "Dostawcy";
+
+        /// <summary>
+        /// Holds the collection of SupplierModel instances.
+        /// </summary>
         public ObservableCollection<SupplierModel> Suppliers
         {
             get => _suppliers;
@@ -37,6 +49,9 @@ namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
             }
         }
 
+        /// <summary>
+        /// Holds an instance of SuppliersFormView.
+        /// </summary>
         public Window SuppliersFormView
         {
             get => _supplierFormView;
@@ -49,63 +64,78 @@ namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
             }
         }
 
-        public ICommand AddNewSupplierCommand
+        #endregion
+
+        #region Properties - Commands
+
+        /// <summary>
+        /// Opens the adding a new supplier form.
+        /// </summary>
+        public ICommand AddCommand
         {
             get
             {
-                if (_addNewSupplierCommand is null)
+                if (_addCommand is null)
                 {
-                    _addNewSupplierCommand = new RelayCommand(
-                        _ => AddSupplier(),
+                    _addCommand = new RelayCommand(
+                        _ => Add(),
                         _ => SuppliersFormView is null
                     );
                 }
 
-                return _addNewSupplierCommand;
+                return _addCommand;
             }
         }
 
-        public ICommand EditSupplierCommand
+        /// <summary>
+        /// Opens the editing supplier form.
+        /// </summary>
+        public ICommand EditCommand
         {
             get
             {
-                if (_editSupplierCommand is null)
+                if (_editCommand is null)
                 {
-                    _editSupplierCommand = new RelayCommand(
-                        s => EditSupplier(s as SupplierModel),
+                    _editCommand = new RelayCommand(
+                        s => Edit(s as SupplierModel),
                         _ => SuppliersFormView is null
                     );
                 }
 
-                return _editSupplierCommand;
+                return _editCommand;
             }
         }
 
-        public ICommand RemoveSupplierCommand
+        /// <summary>
+        /// Removes the passed supplier.
+        /// </summary>
+        public ICommand RemoveCommand
         {
             get
             {
-                if (_removeSupplierCommand is null)
+                if (_removeCommand is null)
                 {
-                    _removeSupplierCommand = new RelayCommand(
-                        s => RemoveSupplier((SupplierModel) s)
+                    _removeCommand = new RelayCommand(
+                        s => Remove((SupplierModel) s)
                     );
                 }
 
-                return _removeSupplierCommand;
+                return _removeCommand;
             }
         }
 
-        public string Name => "Dostawcy";
+        #endregion
 
-        public void AddSupplier()
+        #region Methods
+
+        private void Add()
         {
             SuppliersFormView = new SupplierFormView(new SupplierFormViewModel(_dbContext));
             SuppliersFormView.Show();
             SuppliersFormView.Closed += OnSuppliersFormClosed;
         }
 
-        public void EditSupplier(SupplierModel supplier)
+        private void Edit(SupplierModel supplier)
         {
             SuppliersFormView = new SupplierFormView(new SupplierFormViewModel(_dbContext, supplier));
             SuppliersFormView.Show();
@@ -119,7 +149,7 @@ namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
             FillData();
         }
 
-        public void RemoveSupplier(SupplierModel supplier)
+        private void Remove(SupplierModel supplier)
         {
             var messageBoxResult = MessageBox.Show($"Czy na pewno chcesz usunąć dostawcę {supplier.Name}?",
                 "Usuwanie dostawcy", MessageBoxButton.YesNo);
@@ -135,5 +165,7 @@ namespace WarehouseManager.UI.Components.SuppliersComponent.ViewModels
         {
             Suppliers = new ObservableCollection<SupplierModel>(_dbContext.Suppliers);
         }
+
+        #endregion
     }
 }
