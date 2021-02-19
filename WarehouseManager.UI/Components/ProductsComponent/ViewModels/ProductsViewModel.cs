@@ -2,15 +2,17 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.ProductsComponent.Views;
-using WarehouseManager.UI.Components.WarehousesComponent.Views;
 using WarehouseManager.UI.Data;
 using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
 {
+    /// <summary>
+    /// The ProductsViewModel class.
+    /// Contains methods for ProductsView view.
+    /// </summary>
     public class ProductsViewModel : ObservableObject, IPageViewModel
     {
         private readonly AppDbContext _dbContext;
@@ -32,6 +34,9 @@ namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
 
         public string Name => "Produkty";
 
+        /// <summary>
+        /// Holds the collection of ProductModel instances
+        /// </summary>
         public ObservableCollection<ProductModel> Products
         {
             get => _products;

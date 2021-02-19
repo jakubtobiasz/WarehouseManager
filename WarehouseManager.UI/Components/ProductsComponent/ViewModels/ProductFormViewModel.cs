@@ -8,6 +8,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
 {
+    /// <summary>
+    /// The ProductFormViewModel class.
+    /// Contains methods for ProductFormView view.
+    /// </summary>
     public class ProductFormViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
@@ -22,12 +26,18 @@ namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Holds ProductModel instance.
+        /// </summary>
         public ProductModel Model { get; set; }
 
         #endregion
 
         #region Properties - Command
 
+        /// <summary>
+        /// Saves changes when conditions met.
+        /// </summary>
         public ICommand SaveCommand
         {
             get
@@ -35,7 +45,7 @@ namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
                 if (_saveCommand is null)
                 {
                     _saveCommand = new RelayCommand(
-                        _ => SaveChanges(),
+                        _ => Save(),
                         _ => Model.CanSave
                     );
                 }
@@ -48,7 +58,7 @@ namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
 
         #region Methods
 
-        public void SaveChanges()
+        private void Save()
         {
             if (Model.ProductId == default)
             {
@@ -65,6 +75,9 @@ namespace WarehouseManager.UI.Components.ProductsComponent.ViewModels
             window?.Close();
         }
 
+        /// <summary>
+        /// Reloads Model entry.
+        /// </summary>
         public void ReloadModel()
         {
             _dbContext.Entry(Model).Reload();
