@@ -8,6 +8,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 {
+    /// <summary>
+    /// The EmployeeFormViewModel class.
+    /// Contains methods for EmployeeFormView view.
+    /// </summary>
     public class EmployeeFormViewModel : ObservableObject
     {
         private readonly AppDbContext _dbContext;
@@ -35,7 +39,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
                 if (_saveCommand is null)
                 {
                     _saveCommand = new RelayCommand(
-                        _ => SaveChanges(),
+                        _ => Save(),
                         _ => Model.CanSave
                     );
                 }
@@ -48,7 +52,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 
         #region Methods
 
-        public void SaveChanges()
+        public void Save()
         {
             if (Model.EmployeeId == default)
             {

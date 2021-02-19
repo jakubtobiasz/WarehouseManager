@@ -10,6 +10,10 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 {
+    /// <summary>
+    /// The EmployeeFormViewModel class.
+    /// Contains methods for EmployeeFormView view.
+    /// </summary>
     public class EmployeesViewModel : ObservableObject, IPageViewModel
     {
         private readonly AppDbContext _dbContext;
@@ -32,6 +36,9 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 
         public string Name => "Pracownicy";
 
+        /// <summary>
+        /// Holds a collection of Employees
+        /// </summary>
         public ObservableCollection<EmployeeModel> Employees
         {
             get => _employees;
@@ -60,7 +67,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 
         #region Properties - Commands
 
-        public ICommand AddEmployeeCommand
+        private ICommand AddEmployeeCommand
         {
             get
             {
@@ -76,7 +83,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
-        public ICommand EditEmployeeCommand
+        private ICommand EditEmployeeCommand
         {
             get
             {
@@ -91,7 +98,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
-        public ICommand RemoveEmployeeCommand
+        private ICommand RemoveEmployeeCommand
         {
             get
             {
@@ -106,7 +113,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
             }
         }
 
-        public ICommand ShowManagedWarehousesCommand
+        private ICommand ShowManagedWarehousesCommand
         {
             get
             {
@@ -160,7 +167,7 @@ namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
         private void ShowManagedWarehouses(EmployeeModel employee)
         {
             var employeeManagedWarehousesView =
-                new EmployeeManagedWarehousesView(new EmployeeManagedWarehousesViewModel(_dbContext, employee));
+                new EmployeeManagedWarehousesView(new EmployeeManagedWarehousesViewModel(employee));
             employeeManagedWarehousesView.Show();
         }
 
