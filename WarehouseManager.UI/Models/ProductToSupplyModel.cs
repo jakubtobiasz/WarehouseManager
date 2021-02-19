@@ -4,6 +4,9 @@ using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
 {
+    /// <summary>
+    /// The model representing the ProductToSupply entity.
+    /// </summary>
     public class ProductToSupplyModel : ObservableObject
     {
         private int _productToSupplyId;

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.WarehousesComponent.Views;
 using WarehouseManager.UI.Data;

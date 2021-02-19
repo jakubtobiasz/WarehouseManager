@@ -3,6 +3,9 @@ using WarehouseManager.UI.Models;
 
 namespace WarehouseManager.UI.Data
 {
+    /// <summary>
+    /// The class holding all configuration related to the database connection.
+    /// </summary>
     public sealed class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions options) : base(options)

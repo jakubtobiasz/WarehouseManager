@@ -11,7 +11,6 @@ using WarehouseManager.UI.Components.SuppliersComponent.Views;
 using WarehouseManager.UI.Components.SuppliesComponent.ViewModels;
 using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
 using WarehouseManager.UI.Data;
-using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI
 {

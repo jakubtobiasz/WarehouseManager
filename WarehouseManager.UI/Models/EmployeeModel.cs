@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +8,9 @@ using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
 {
+    /// <summary>
+    /// The model representing the Employee entity.
+    /// </summary>
     public class EmployeeModel : ObservableObject, IDataErrorInfo
     {
         private int _employeeId;

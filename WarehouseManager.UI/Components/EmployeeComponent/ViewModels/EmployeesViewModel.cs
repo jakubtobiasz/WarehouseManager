@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.EmployeeComponent.Views;
 using WarehouseManager.UI.Data;
 using WarehouseManager.UI.Models;
-using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI.Components.EmployeeComponent.ViewModels
 {

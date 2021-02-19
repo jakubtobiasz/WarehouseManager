@@ -7,6 +7,9 @@ using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
 {
+    /// <summary>
+    /// The model representing the Supply entity.
+    /// </summary>
     public class SupplyModel : ObservableObject, IDataErrorInfo
     {
         private int _supplyId;

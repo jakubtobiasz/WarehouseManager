@@ -6,6 +6,9 @@ using WarehouseManager.UI.Common;
 
 namespace WarehouseManager.UI.Models
 {
+    /// <summary>
+    /// The model representing the Warehouse entity.
+    /// </summary>
     public class WarehouseModel : ObservableObject, IDataErrorInfo
     {
         private int _warehouseId;

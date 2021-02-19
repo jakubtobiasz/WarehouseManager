@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.EmployeeComponent.ViewModels;
 using WarehouseManager.UI.Components.ProductsComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliersComponent.ViewModels;
 using WarehouseManager.UI.Components.SuppliesComponent.ViewModels;
 using WarehouseManager.UI.Components.WarehousesComponent.ViewModels;
-using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI.Components.AppComponent.ViewModels
 {

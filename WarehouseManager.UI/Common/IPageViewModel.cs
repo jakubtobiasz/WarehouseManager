@@ -1,4 +1,4 @@
-﻿namespace WarehouseManager.UI.Views
+﻿namespace WarehouseManager.UI.Common
 {
     public interface IPageViewModel
     {

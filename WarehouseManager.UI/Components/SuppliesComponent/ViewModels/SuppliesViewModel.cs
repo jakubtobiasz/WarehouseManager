@@ -2,12 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
-using WarehouseManager.UI.Commands;
 using WarehouseManager.UI.Common;
 using WarehouseManager.UI.Components.SuppliesComponent.Views;
 using WarehouseManager.UI.Data;
 using WarehouseManager.UI.Models;
-using WarehouseManager.UI.Views;
 
 namespace WarehouseManager.UI.Components.SuppliesComponent.ViewModels
 {
